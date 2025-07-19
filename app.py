@@ -21,6 +21,12 @@ if selected_tab == "InfraGPT":
 if selected_tab == "DataGPT":
     from tabs import datagpt_tab
     datagpt_tab.datagpt_ui()
+elif selected_tab == "QuantGPT":
+    from tabs import quantgpt_tab
+    quantgpt_tab.quantgpt_ui()
+elif selected_tab == "SimuGPT":
+    from tabs import simugpt_tab
+    simugpt_tab.simugpt_ui()
 
 
 if selected_tab == "EmailGPT":
