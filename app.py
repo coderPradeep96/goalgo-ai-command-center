@@ -4,9 +4,7 @@ import streamlit as st
 import os
 from utils.generate_pdf import generate_sample_pdf
 
-if st.button("Generate Sample Report"):
-    generate_sample_pdf()
-    st.success("Sample PDF generated successfully!")
+
 
 
 st.set_page_config(page_title="GoAlgo AI Command Center", layout="wide")
@@ -39,29 +37,30 @@ with tabs[4]:
 with tabs[5]:
     st.header("📤 Export & Email Reports")
     st.write("EmailGPT handles all exports and communications.")
+    st.subheader("📬 Email Insight Report")
+
+    email_input = st.text_input("Enter your email address", placeholder="you@example.com")
+    
+    if st.button("Send Report"):
+        if not email_input:
+            st.warning("Please enter a valid email address.")
+        else:
+            # Make sure the report file exists
+            report_path = "reports/insight_report.pdf"
+    
+            if not os.path.exists(report_path):
+                st.error("⚠️ Report file not found.")
+            else:
+                success, message = send_email(
+                    recipient_email=email_input,
+                    subject="📈 GoAlgo Insight Report",
+                    body="Hi,\n\nPlease find attached your daily GoAlgo insight report.\n\nBest,\nTeam GoAlgo",
+                    attachment_path=report_path
+                )
+                st.success(message) if success else st.error(message)
 
 with tabs[6]:
     st.header("🔧 Infrastructure")
     st.write("InfraGPT keeps your app running and deployable.")
-st.subheader("📬 Email Insight Report")
 
-email_input = st.text_input("Enter your email address", placeholder="you@example.com")
-
-if st.button("Send Report"):
-    if not email_input:
-        st.warning("Please enter a valid email address.")
-    else:
-        # Make sure the report file exists
-        report_path = "reports/insight_report.pdf"
-
-        if not os.path.exists(report_path):
-            st.error("⚠️ Report file not found.")
-        else:
-            success, message = send_email(
-                recipient_email=email_input,
-                subject="📈 GoAlgo Insight Report",
-                body="Hi,\n\nPlease find attached your daily GoAlgo insight report.\n\nBest,\nTeam GoAlgo",
-                attachment_path=report_path
-            )
-            st.success(message) if success else st.error(message)
 
