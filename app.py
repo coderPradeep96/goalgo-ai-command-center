@@ -18,8 +18,12 @@ selected_tab = st.sidebar.radio("GoAlgo AI Command Center", ["InfraGPT", "DataGP
 if selected_tab == "InfraGPT":
     from tabs import infra_tab
     infra_tab.infragpt_ui()
+if selected_tab == "DataGPT":
+    from tabs import datagpt_tab
+    datagpt_tab.datagpt_ui()
 
-if selected_tab == "EMAILGPT":
+
+if selected_tab == "EmailGPT":
     st.header("📤 Export & Email Reports")
     st.write("EmailGPT handles all exports and communications.")
     st.subheader("📬 Email Insight Report")
