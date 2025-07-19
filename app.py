@@ -2,6 +2,11 @@
 from scripts.emailer import send_email
 import streamlit as st
 import os
+from utils.generate_pdf import generate_sample_pdf
+
+if st.button("Generate Sample Report"):
+    generate_sample_pdf()
+    st.success("Sample PDF generated successfully!")
 
 
 st.set_page_config(page_title="GoAlgo AI Command Center", layout="wide")
