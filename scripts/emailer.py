@@ -7,8 +7,7 @@ import os
 
 def send_email(recipient_email, subject, body, attachment_path=None):
     try:
-        sender_email = st.secrets["EMAIL_SENDER"]
-        recipient_email = st.secrets["EMAIL_RECIEVER"]
+        sender_email = st.secrets["EMAIL_USER"]
         sender_password = st.secrets["EMAIL_PASS"]
 
         # Setup the MIME
