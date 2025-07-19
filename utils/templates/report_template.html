@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: sans-serif; }
+        h1 { color: #3b82f6; }
+        table, th, td { border: 1px solid gray; border-collapse: collapse; padding: 6px; }
+    </style>
+</head>
+<body>
+    <h1>GoAlgo Portfolio Report</h1>
+
+    <h2>Recommended Portfolio</h2>
+    <table>
+        <tr><th>Stock</th><th>Weight</th><th>Quantity</th></tr>
+        {% for row in portfolio %}
+        <tr>
+            <td>{{ row.Stock }}</td>
+            <td>{{ '{:.2f}%'.format(row.Weight * 100) }}</td>
+            <td>{{ row.Quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Backtest Summary</h2>
+    <ul>
+        <li>Total Return: {{ summary['Total Return'] | round(2) * 100 }}%</li>
+        <li>Annualized Return: {{ summary['Annualized Return'] | round(2) * 100 }}%</li>
+        <li>Volatility: {{ summary['Volatility'] | round(2) * 100 }}%</li>
+        <li>Sharpe Ratio: {{ summary['Sharpe'] | round(2) }}</li>
+    </ul>
+</body>
+</html>
